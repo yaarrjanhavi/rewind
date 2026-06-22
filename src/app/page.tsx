@@ -364,7 +364,19 @@ export default function Home() {
                 >
                   <div className="space-y-4 text-center p-1">
                     <div className="flex flex-col items-center justify-center py-2">
-                      <h2 className="font-press-start text-sm text-[#D4A574] tracking-wider mb-1">REWIND</h2>
+                      <img 
+                        src="/logo.png" 
+                        alt="REWIND" 
+                        className="h-14 md:h-16 object-contain mb-2 select-none"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                          const fallback = document.getElementById('logo-fallback');
+                          if (fallback) fallback.style.display = 'block';
+                        }}
+                      />
+                      <h2 id="logo-fallback" style={{ display: 'none' }} className="font-press-start text-sm text-[#D4A574] tracking-wider mb-1">
+                        REWIND
+                      </h2>
                       <span className="font-vt323 text-base text-[#F4EAD5]/60 uppercase">
                         Travel Through History One Song At A Time
                       </span>
