@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #1A2340;
+  --color-surface-retro: #243054;
+  --color-primary-retro: #D4A574;
+  --color-accent-retro: #E8C77A;
+  --color-text-retro: #F4EAD5;
+  --font-press-start: "Press Start 2P", monospace;
+  --font-vt323: "VT323", monospace;
+  --font-jetbrains: "JetBrains Mono", monospace;
+}
+
+:root {
+  background-color: #1A2340;
+  color: #F4EAD5;
+}
+
+body {
+  background-color: #1A2340;
+  color: #F4EAD5;
+  font-family: "VT323", "JetBrains Mono", monospace;
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+/* CRT Screen Keyframes & Utility classes */
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.99; }
+  50% { opacity: 0.96; }
+  100% { opacity: 0.99; }
+}
+
+.animate-scanline {
+  animation: scanline 12s linear infinite;
+}
+
+.animate-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* Vintage 90s Scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1A2340;
+  border-left: 2px solid #243054;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #243054;
+  border: 2px solid;
+  border-top-color: #F4EAD5;
+  border-left-color: #F4EAD5;
+  border-bottom-color: #1A2340;
+  border-right-color: #1A2340;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  border-top-color: #1A2340;
+  border-left-color: #1A2340;
+  border-bottom-color: #F4EAD5;
+  border-right-color: #F4EAD5;
+}
+
+/* Scrollbar styling for thin inputs */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #1A2340;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #243054;
+  border: 1px solid #D4A574/50;
+}
+
+/* Retro range input styling */
+input[type="range"].slider-thumb-retro::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 24px;
+  background: #243054;
+  border: 2px solid;
+  border-top-color: #F4EAD5;
+  border-left-color: #F4EAD5;
+  border-bottom-color: #1A2340;
+  border-right-color: #1A2340;
+  cursor: ew-resize;
+}
+
+input[type="range"].slider-thumb-retro::-webkit-slider-thumb:active {
+  border-top-color: #1A2340;
+  border-left-color: #1A2340;
+  border-bottom-color: #F4EAD5;
+  border-right-color: #F4EAD5;
+}
+
+/* Psychedelic visual filter easter egg */
+.psychedelic-filter {
+  filter: hue-rotate(90deg) saturate(2.5) contrast(1.2);
+  animation: psychWave 4s ease-in-out infinite alternate;
+}
+
+@keyframes psychWave {
+  0% {
+    filter: hue-rotate(0deg) saturate(2.5) contrast(1.2);
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(3) contrast(1.4);
+  }
+}
