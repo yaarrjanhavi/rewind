@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 import { X, Minus, Square } from 'lucide-react';
 
 interface RetroWindowProps {
@@ -28,6 +28,7 @@ export default function RetroWindow({
 }: RetroWindowProps) {
   const [isMaximized, setIsMaximized] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const dragControls = useDragControls();
 
   const isActive = activeId === id;
 
@@ -65,7 +66,8 @@ export default function RetroWindow({
       transition={{ type: 'spring', damping: 20, stiffness: 200 }}
       drag={!isMaximized}
       dragMomentum={false}
-      dragHandleClassName="window-title-bar"
+      dragControls={dragControls}
+      dragListener={false}
       onDragStart={() => onFocus(id)}
       onClickCapture={() => onFocus(id)}
       style={{
@@ -85,6 +87,10 @@ export default function RetroWindow({
     >
       {/* Window Title Bar */}
       <div
+        onPointerDown={(e) => {
+          onFocus(id);
+          dragControls.start(e);
+        }}
         className={`
           window-title-bar
           flex items-center justify-between p-1.5 md:p-2 cursor-move
