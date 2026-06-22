@@ -76,8 +76,9 @@ export async function GET(request: NextRequest) {
         'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
       }
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('API Error in /api/compare:', error);
-    return NextResponse.json({ error: 'Internal Server Error', details: error.message }, { status: 500 });
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: 'Internal Server Error', details: message }, { status: 500 });
   }
 }

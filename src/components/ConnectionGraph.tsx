@@ -17,7 +17,7 @@ export default function ConnectionGraph({ connections }: ConnectionGraphProps) {
   const { nodes, links } = connections;
 
   // Calculate coordinates dynamically for each node based on its type
-  const getNodeCoords = (node: GraphNode, index: number) => {
+  const getNodeCoords = (node: GraphNode) => {
     if (node.id === 'year') {
       return { x: cx, y: cy };
     }
@@ -55,8 +55,8 @@ export default function ConnectionGraph({ connections }: ConnectionGraphProps) {
 
   // Pre-calculate coordinates for all nodes to draw links
   const nodePositions: Record<string, { x: number; y: number }> = {};
-  nodes.forEach((node, index) => {
-    nodePositions[node.id] = getNodeCoords(node, index);
+  nodes.forEach((node) => {
+    nodePositions[node.id] = getNodeCoords(node);
   });
 
   const getThemeColor = (type: string) => {

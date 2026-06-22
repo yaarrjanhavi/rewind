@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export interface GenreTrendPoint {
   year: number;
@@ -27,7 +27,7 @@ const evolutionData: GenreTrendPoint[] = [
   { year: 2020, Rock: 30, Jazz: 8, Pop: 95, 'Hip-Hop': 96, Disco: 20, Electronic: 90, annotation: "TikTok viral sounds & Trap dominance" }
 ];
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     return NextResponse.json(evolutionData, {
       headers: {
@@ -35,6 +35,7 @@ export async function GET(request: NextRequest) {
       }
     });
   } catch (error) {
+    console.error('Error in /api/evolution:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

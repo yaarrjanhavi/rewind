@@ -5,27 +5,27 @@ interface BootScreenProps {
   onComplete: () => void;
 }
 
+const bootMessages = [
+  "REWIND BIOS v4.51PG, An Energy Star Ally",
+  "Copyright (C) 2026, Rewind Technologies Inc.",
+  "==============================================",
+  "CPU: Gemini-AI Clocked at 3.5GHz",
+  "Memory Test: 1048576KB OK",
+  "Detecting IDE primary master ... HDD 4.3GB",
+  "Detecting IDE secondary master ... CD-ROM DRIVE (8X)",
+  "Sound Blaster 16 Detected at Port 220, IRQ 5, DMA 1",
+  "Loading REWIND OS Kernel ... Done.",
+  "Mounting timeline archives ... Success.",
+  "Connecting to MusicBrainz database ... Connected.",
+  "Connecting to Wikipedia history ... Connected.",
+  "Initializing retro interface ... Done.",
+  "Boot sequence completed."
+];
+
 export default function BootScreen({ onComplete }: BootScreenProps) {
   const [lines, setLines] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
   const [bootPhase, setBootPhase] = useState<'text' | 'loading' | 'ready'>('text');
-
-  const bootMessages = [
-    "REWIND BIOS v4.51PG, An Energy Star Ally",
-    "Copyright (C) 2026, Rewind Technologies Inc.",
-    "==============================================",
-    "CPU: Gemini-AI Clocked at 3.5GHz",
-    "Memory Test: 1048576KB OK",
-    "Detecting IDE primary master ... HDD 4.3GB",
-    "Detecting IDE secondary master ... CD-ROM DRIVE (8X)",
-    "Sound Blaster 16 Detected at Port 220, IRQ 5, DMA 1",
-    "Loading REWIND OS Kernel ... Done.",
-    "Mounting timeline archives ... Success.",
-    "Connecting to MusicBrainz database ... Connected.",
-    "Connecting to Wikipedia history ... Connected.",
-    "Initializing retro interface ... Done.",
-    "Boot sequence completed."
-  ];
 
   useEffect(() => {
     let index = 0;

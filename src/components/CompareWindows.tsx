@@ -103,7 +103,7 @@ export default function CompareWindows({ onSearchCompare, result, loading }: Com
               <div className="space-y-4 font-vt323 text-lg">
                 <div>
                   <h4 className="font-press-start text-[8px] text-[#E8C77A] mb-1">CULTURAL ATMOSPHERE:</h4>
-                  <p className="text-[#F4EAD5]/80 italic">"{result.narrativeA}"</p>
+                  <p className="text-[#F4EAD5]/80 italic">&quot;{result.narrativeA}&quot;</p>
                 </div>
 
                 <div className="border-t border-[#D4A574]/20 pt-2">
@@ -122,7 +122,7 @@ export default function CompareWindows({ onSearchCompare, result, loading }: Com
                   <ul className="list-disc pl-4 space-y-1">
                     {result.musicA.albums.slice(0, 3).map((alb, i) => (
                       <li key={i} className="truncate">
-                        "{alb.title}" by {alb.artist}
+                        &quot;{alb.title}&quot; by {alb.artist}
                       </li>
                     ))}
                   </ul>
@@ -147,7 +147,7 @@ export default function CompareWindows({ onSearchCompare, result, loading }: Com
               <div className="space-y-4 font-vt323 text-lg">
                 <div>
                   <h4 className="font-press-start text-[8px] text-[#E8C77A] mb-1">CULTURAL ATMOSPHERE:</h4>
-                  <p className="text-[#F4EAD5]/80 italic">"{result.narrativeB}"</p>
+                  <p className="text-[#F4EAD5]/80 italic">&quot;{result.narrativeB}&quot;</p>
                 </div>
 
                 <div className="border-t border-[#D4A574]/20 pt-2">
@@ -166,7 +166,7 @@ export default function CompareWindows({ onSearchCompare, result, loading }: Com
                   <ul className="list-disc pl-4 space-y-1">
                     {result.musicB.albums.slice(0, 3).map((alb, i) => (
                       <li key={i} className="truncate">
-                        "{alb.title}" by {alb.artist}
+                        &quot;{alb.title}&quot; by {alb.artist}
                       </li>
                     ))}
                   </ul>

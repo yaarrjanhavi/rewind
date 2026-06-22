@@ -163,9 +163,6 @@ const benchmarkSnapshots: Record<number, Partial<HistoricalSnapshot>> = {
 
 // Simple procedural generator to build plausible historical profiles for other years if API is offline
 export function generateProceduralSnapshot(year: number, wikiSummary: string = ''): HistoricalSnapshot {
-  // Determine decade
-  const decade = Math.floor(year / 10) * 10;
-  
   // Interpolated Salary Formula (approximate historical averages)
   // 1900: $450, 1950: $3300, 1970: $9800, 1990: $25000, 2020: $56000
   let avgSalary = '';

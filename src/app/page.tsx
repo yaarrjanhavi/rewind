@@ -5,17 +5,11 @@ import {
   Tv,
   RefreshCw,
   Clock,
-  Terminal,
-  BookOpen,
   LineChart,
   Share2,
   Power,
-  Volume2,
-  HelpCircle,
   Folder,
-  FileText,
-  Search,
-  ArrowRight
+  FileText
 } from 'lucide-react';
 
 import BootScreen from '@/components/BootScreen';
@@ -29,7 +23,7 @@ import EvolutionChart from '@/components/EvolutionChart';
 import ConnectionGraph from '@/components/ConnectionGraph';
 import TimeCapsuleCard from '@/components/TimeCapsuleCard';
 import CompareWindows from '@/components/CompareWindows';
-import { HistoricalSnapshot, CompareResult } from '@/types';
+import { HistoricalSnapshot, CompareResult, SoundtrackTrack } from '@/types';
 
 export default function Home() {
   const [booted, setBooted] = useState(false);
@@ -65,7 +59,7 @@ export default function Home() {
 
   // Personalised Soundtrack choices
   const [userGenres, setUserGenres] = useState<string[]>([]);
-  const [customSoundtrack, setCustomSoundtrack] = useState<any[]>([]);
+  const [customSoundtrack, setCustomSoundtrack] = useState<SoundtrackTrack[]>([]);
 
   // Taskbar Real-time Clock
   const [timeStr, setTimeStr] = useState('');
@@ -97,16 +91,6 @@ export default function Home() {
 
   const handleFocus = (windowId: string) => {
     setActiveWindow(windowId);
-  };
-
-  const toggleWindow = (windowId: string) => {
-    setOpenWindows((prev) => {
-      const nextState = !prev[windowId];
-      if (nextState) {
-        setActiveWindow(windowId);
-      }
-      return { ...prev, [windowId]: nextState };
-    });
   };
 
   const closeWindow = (windowId: string) => {
@@ -537,7 +521,7 @@ export default function Home() {
                           {snapshot.music.trends.map((trend, idx) => (
                             <li key={idx} className="flex items-start">
                               <span className="text-[#D4A574] mr-2">▪</span>
-                              <span>"{trend}"</span>
+                              <span>&quot;{trend}&quot;</span>
                             </li>
                           ))}
                         </ul>
@@ -579,6 +563,48 @@ export default function Home() {
                             <span className="font-vt323 text-xs text-[#D4A574] truncate w-full">
                               {album.artist}
                             </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Personalised Soundtrack Generator */}
+                    <div className="border-t border-[#D4A574]/30 pt-3 mt-4 space-y-3">
+                      <h4 className="font-press-start text-[8px] text-[#E8C77A] uppercase">Personalised Soundtrack</h4>
+                      <p className="text-sm text-[#F4EAD5]/60 mb-2">Select genres to compile your custom playlist:</p>
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {snapshot.music.genres.map((g) => {
+                          const isSelected = userGenres.includes(g.name);
+                          return (
+                            <button
+                              key={g.name}
+                              onClick={() => handleGenreToggle(g.name)}
+                              className={`
+                                px-2 py-0.5 font-press-start text-[8px] border cursor-pointer transition-all
+                                ${isSelected
+                                  ? 'bg-[#E8C77A] text-[#1A2340] border-[#D4A574]'
+                                  : 'bg-[#1A2340] text-[#F4EAD5] border-[#D4A574]/30 hover:bg-[#D4A574]/15'
+                                }
+                              `}
+                            >
+                              {g.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      
+                      <div className="space-y-2 max-h-[150px] overflow-y-auto custom-scrollbar">
+                        {customSoundtrack.map((track, i) => (
+                          <div key={i} className="bg-[#1A2340]/40 p-2 border border-[#D4A574]/10 flex items-start space-x-2">
+                            <div className="text-xs text-[#E8C77A] font-press-start self-center">▶</div>
+                            <div className="flex-1 min-w-0 text-left">
+                              <div className="font-press-start text-[8px] text-[#F4EAD5] truncate">
+                                {track.title} <span className="text-[#D4A574]/70">- {track.artist}</span>
+                              </div>
+                              <div className="font-vt323 text-sm text-[#F4EAD5]/70 italic mt-0.5">
+                                &quot;{track.description}&quot;
+                              </div>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -816,7 +842,7 @@ export default function Home() {
                   !!! Y2K FAULT DETECTED !!!
                 </h3>
                 <p className="font-vt323 text-lg leading-relaxed">
-                  CRITICAL ERRORS: Millennium date registers overflowed. BIOS reports year value "00" instead of "2000". System logs show core timeline fragmentation.
+                  CRITICAL ERRORS: Millennium date registers overflowed. BIOS reports year value &quot;00&quot; instead of &quot;2000&quot;. System logs show core timeline fragmentation.
                 </p>
                 <div className="bg-black/30 border border-red-800 p-2 text-base text-red-400">
                   <p>• Check memory capacitors.</p>

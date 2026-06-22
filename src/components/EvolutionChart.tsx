@@ -195,7 +195,7 @@ export default function EvolutionChart() {
             return (
               <path
                 key={genre}
-                d={generateLinePath(genre as any)}
+                d={generateLinePath(genre as keyof Omit<GenreTrendPoint, 'year' | 'annotation'>)}
                 fill="none"
                 stroke={genreColors[genre]}
                 strokeWidth="3.5"
@@ -224,7 +224,7 @@ export default function EvolutionChart() {
                   stroke="#1A2340"
                   strokeWidth="2.5"
                   className="cursor-pointer hover:r-7 transition-all"
-                  onMouseEnter={(e) => {
+                  onMouseEnter={() => {
                     setHoveredPoint({
                       x: x,
                       y: y,
@@ -264,7 +264,7 @@ export default function EvolutionChart() {
                 ))}
               {hoveredPoint.point.annotation && (
                 <div className="text-[11px] text-[#D4A574] italic border-t border-[#D4A574]/20 pt-1 mt-1">
-                  "{hoveredPoint.point.annotation}"
+                  &quot;{hoveredPoint.point.annotation}&quot;
                 </div>
               )}
             </div>

@@ -23,7 +23,7 @@ export default function CursorTrail() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Particle[] = [];
+    const particles: Particle[] = [];
     const symbols = ['♫', '♪', '✦', '◼', '♬', '♩'];
     const colors = ['#D4A574', '#E8C77A', '#F4EAD5'];
 
